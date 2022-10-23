@@ -1,52 +1,83 @@
 ﻿using System;
 
-namespace Computer_Firm
+namespace Excursion_Calculator
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
-            //total
-            double numRatings = 0;
-            int currentRating = 0;
-            double poss = 0;
-            double salesMade = 0;
-            //total
-            double totalSales = 0;
-            for (int i = 1; i <= n; i++)
+            int people = int.Parse(Console.ReadLine());
+            string season = Console.ReadLine();
+            double price = 0;
+            double totalPrice = 0;
+            switch (season)
             {
-                int rating = int.Parse(Console.ReadLine());
-                currentRating = rating % 10;
-                numRatings += currentRating;
-                if (currentRating == 2)
-                {
-                    poss = 0;
-                }
-                else if (currentRating == 3)
-                {
-                    poss = 0.50;
-                }
-                else if (currentRating == 4)
-                {
-                    poss = 0.70;
-                }
-                else if (currentRating == 5)
-                {
-                    poss = 0.85;
-                }
-                else if (currentRating == 6)
-                {
-                    poss = 1;
-                }
-                double calculator = rating / 10;
-                double firstTwo = Math.Round(calculator);
-                salesMade = firstTwo * poss;
-                totalSales += salesMade;
+                case "spring":
+                    //Пролет(spring)
+                    //50.00 лв.на човек
+                    // 48.00 лв.на човек
+                    if (people <= 5)
+                    {
+                        price = 50;
+                        totalPrice = people * price;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    else
+                    {
+                        price = 48;
+                        totalPrice = people * price;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    break;
+                case "summer":
+                    if (people <= 5)
+                    {
+                        price = 48.50;
+                        totalPrice = people * price;
+                        totalPrice *= 0.85;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    else
+                    {
+                        price = 45;
+                        totalPrice = people * price;
+                        totalPrice *= 0.85;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    break;
+                case "autumn":
+                    if (people <= 5)
+                    {
+                        price = 60;
+                        totalPrice = people * price;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    else
+                    {
+                        price = 49.50;
+                        totalPrice = people * price;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    break;
+                case "winter":
+                    if (people <= 5)
+                    {
+                        price = 86;
+                        totalPrice = people * price;
+                        totalPrice *= 1.08;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    else
+                    {
+                        price = 85;
+                        totalPrice = people * price;
+                        totalPrice *= 1.08;
+                        Console.WriteLine($"{totalPrice:f2} leva.");
+                    }
+                    break;
+                default:
+                    break;
             }
-            double finish = numRatings / n;
-            Console.WriteLine($"{totalSales:f2}");
-            Console.WriteLine($"{finish:f2}");
         }
     }
 }
