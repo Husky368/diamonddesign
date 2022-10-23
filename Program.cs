@@ -1,29 +1,62 @@
 ﻿using System;
 
-namespace Football_Kit
+namespace Hair_Salon
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double tshortPrice = double.Parse(Console.ReadLine());
-            double goalPrice = double.Parse(Console.ReadLine());
-
-            double pants = tshortPrice * 0.75;
-            double socks = pants * 0.20;
-            double shoes = (tshortPrice + pants) * 2;
-            double totalPrice = tshortPrice + pants + socks + shoes;
-            totalPrice *= 0.85;
-            if (totalPrice>=goalPrice)
+            int goal = int.Parse(Console.ReadLine());
+            string action = Console.ReadLine();
+            int budget = 0;
+            int reached = 0;
+            while (action!="closed")
             {
-                Console.WriteLine("Yes, he will earn the world-cup replica ball!");
-                Console.WriteLine($"His sum is {totalPrice:f2} lv.");
+                switch (action)
+                {
+                    case "haircut":
+                        string type = Console.ReadLine();
+                        if (type=="mens")
+                        {
+                            budget += 15;
+                        }
+                        else if (type == "ladies")
+                        {
+                            budget += 20;
+                        }
+                        else
+                        {
+                            budget += 10;
+                        }
+                        break;
+                    case "color":
+                        string typee = Console.ReadLine();
+                        if (typee == "touch up")
+                        {
+                            budget += 20;
+                        }
+                        else
+                        {
+                            budget += 30;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                if (budget>=goal)
+                {
+                    Console.WriteLine("You have reached your target for the day!");
+                    Console.WriteLine($"Earned money: {budget}lv.");
+                    reached++;
+                    break;
+                }
+                action = Console.ReadLine();
             }
-            else
+            if (reached==0)
             {
-                double need = goalPrice - totalPrice;
-                Console.WriteLine("No, he will not earn the world-cup replica ball.");
-                Console.WriteLine($"He needs {need:f2} lv. more.");
+                int need = goal - budget;
+                Console.WriteLine($"Target not reached! You need {need}lv. more.");
+                Console.WriteLine($"Earned money: {budget}lv.");
             }
         }
     }
